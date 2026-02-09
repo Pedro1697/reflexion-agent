@@ -34,19 +34,17 @@ actor_prompt_template = ChatPromptTemplate.from_messages(
             1. {first_instruction}
             2. Reflect and critique your answer. Be severe to maximize improvment.
             3. Recommend search queries to research information and improve your answer.
-            
-            
-            
+    
             """
         ),
-        MessagesPlaceholder(variable_name="messages")
+        MessagesPlaceholder(variable_name="messages"),
         ("system","Answer the user's question above using the requireds format."),
     ]
 ).partial(
     time=lambda: datetime.datetime.now().isoformat(),
 )
 
-first_responder_prompt_template = actor_prompt_template(
+first_responder_prompt_template = actor_prompt_template.partial(
     first_instruction ="Provide a detailed ~250 words answer"
 )
 
