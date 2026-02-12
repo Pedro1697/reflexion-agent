@@ -65,7 +65,7 @@ revise_instructions = """"Revbise your previous answer using the new information
                         - You should use the previous critique to remove superflous information from your answer and make SURE it is not more than 250 words
 """
 
-reisor = actor_prompt_template.partial(
+revisor = actor_prompt_template.partial(
     first_instruction=revise_instructions
 ) | llm.bind(tools=[ReviseAnswer], tool_choice="ReviseAnswer")
 
